@@ -21,6 +21,14 @@ public class home extends AppCompatActivity {
                 startActivity(add_guardian);
             }
         });
+        final TextView add_template = (TextView)findViewById(R.id.button5);
+        add_template.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent add_template = new Intent(home.this, add_template.class);
+                startActivity(add_template);
+            }
+        });
 
     }
 }
