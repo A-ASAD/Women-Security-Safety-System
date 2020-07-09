@@ -3,7 +3,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 public class home extends AppCompatActivity {
@@ -29,6 +31,18 @@ public class home extends AppCompatActivity {
                 startActivity(add_template);
             }
         });
+        findViewById(R.id.logout_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(home.this);
+                SharedPreferences.Editor Ed=sp.edit();
+                Ed.putBoolean("isLogin", false);
+                Ed.commit();
 
+                Intent login = new Intent(home.this, login.class);
+                startActivity(login);
+                finish();
+            }
+        });
     }
 }
