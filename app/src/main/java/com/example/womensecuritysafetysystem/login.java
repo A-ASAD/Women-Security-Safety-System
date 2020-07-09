@@ -61,14 +61,29 @@ public class login extends AppCompatActivity {
                             new String[]{uname, pass},null,null,null);
                     if(cursor.getCount()>0)
                     {
-                        SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(login.this);
-                        SharedPreferences.Editor Ed=sp.edit();
-                        Ed.putBoolean("isLogin", true);
-                        Ed.commit();
+                        new AlertDialog.Builder(login.this)
+                                .setMessage("Do you want to save credentials for next login?")
+                                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                        Intent home = new Intent(login.this, home.class);
-                        startActivity(home);
-                        finish();
+                                        SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(login.this);
+                                        SharedPreferences.Editor Ed=sp.edit();
+                                        Ed.putBoolean("isLogin", true);
+                                        Ed.commit();
+
+                                        Intent home = new Intent(login.this, home.class);
+                                        startActivity(home);
+                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent home = new Intent(login.this, home.class);
+                                        startActivity(home);
+                                        finish();
+                                    }
+                                })
+                                .show();
                     }
                     else
                     {

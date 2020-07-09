@@ -72,15 +72,32 @@ public class sign_up extends AppCompatActivity {
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
 
-                                        SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(sign_up.this);
-                                        SharedPreferences.Editor Ed=sp.edit();
-                                        Ed.putBoolean("isLogin", true);
-                                        Ed.commit();
+                                        new AlertDialog.Builder(sign_up.this)
+                                                .setMessage("Do you want to save credentials for next login?")
+                                                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int which) {
 
-                                        login.lgn.finish();
-                                        Intent home = new Intent(sign_up.this, home.class);
-                                        startActivity(home);
-                                        finish();
+                                                        SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(sign_up.this);
+                                                        SharedPreferences.Editor Ed=sp.edit();
+                                                        Ed.putBoolean("isLogin", true);
+                                                        Ed.commit();
+
+                                                        login.lgn.finish();
+                                                        Intent home = new Intent(sign_up.this, home.class);
+                                                        startActivity(home);
+                                                        finish();
+
+                                                    }
+                                                })
+                                                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        login.lgn.finish();
+                                                        Intent home = new Intent(sign_up.this, home.class);
+                                                        startActivity(home);
+                                                        finish();
+                                                    }
+                                                })
+                                                .show();
                                     }
                                 })
                                 .show();

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 public class home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class home extends AppCompatActivity {
 
                 Intent login = new Intent(home.this, login.class);
                 startActivity(login);
+                Toast.makeText(home.this, "Logged out successfully!", Toast.LENGTH_SHORT);
                 finish();
             }
         });
