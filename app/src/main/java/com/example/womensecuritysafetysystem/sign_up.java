@@ -8,9 +8,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.regex.Pattern;
 
 public class sign_up extends AppCompatActivity {
 
@@ -39,6 +42,13 @@ public class sign_up extends AppCompatActivity {
                 {
                     new AlertDialog.Builder(sign_up.this)
                             .setMessage("Both passwords must match!")
+                            .setNegativeButton(android.R.string.yes, null)
+                            .show();
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                {
+                    new AlertDialog.Builder(sign_up.this)
+                            .setMessage("Please enter a valid Email address!")
                             .setNegativeButton(android.R.string.yes, null)
                             .show();
                 }
