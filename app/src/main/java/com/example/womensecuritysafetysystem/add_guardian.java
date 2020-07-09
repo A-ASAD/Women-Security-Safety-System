@@ -15,7 +15,7 @@ public class add_guardian extends AppCompatActivity {
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
 
         final TextView saveG = (TextView) findViewById(R.id.saveGuardian);
-        final TextView name = (TextView) findViewById(R.id.editText);
+        final TextView name = (TextView) findViewById(R.id.su_name);
         final TextView phNo = (TextView) findViewById(R.id.editText1);
         final TextView email = (TextView) findViewById(R.id.login_uname);
 

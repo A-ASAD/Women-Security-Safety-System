@@ -37,7 +37,7 @@ public class login extends AppCompatActivity {
                 if(uname.equals("") || pass.equals(""))
                 {
                     new AlertDialog.Builder(login.this)
-                            .setMessage("Invalid Username or Password")
+                            .setMessage("Please fill out all the fields!")
                             .setNegativeButton(android.R.string.yes, null)
                             .show();
                 }

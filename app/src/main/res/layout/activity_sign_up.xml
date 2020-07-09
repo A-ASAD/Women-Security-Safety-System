@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:fontFamily="casual"
+            android:fontFamily="sans-serif"
             android:text="SIGN UP"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/su_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/su_uname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -50,10 +50,10 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/su_name" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/su_pass"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -64,10 +64,10 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText7" />
+            app:layout_constraintTop_toBottomOf="@+id/su_email" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/su_cpass"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -78,10 +78,10 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText5" />
+            app:layout_constraintTop_toBottomOf="@+id/su_pass" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/su_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -92,7 +92,7 @@
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            app:layout_constraintTop_toBottomOf="@+id/su_uname" />
 
         <TextView
             android:id="@+id/textView5"
@@ -101,8 +101,8 @@
             android:text="Name"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/editText"
-            app:layout_constraintStart_toStartOf="@+id/editText" />
+            app:layout_constraintBottom_toTopOf="@+id/su_name"
+            app:layout_constraintStart_toStartOf="@+id/su_name" />
 
         <TextView
             android:id="@+id/textView6"
@@ -111,8 +111,8 @@
             android:text="Username"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/editText3"
-            app:layout_constraintStart_toStartOf="@+id/editText3" />
+            app:layout_constraintBottom_toTopOf="@+id/su_uname"
+            app:layout_constraintStart_toStartOf="@+id/su_uname" />
 
         <TextView
             android:id="@+id/textView7"
@@ -121,8 +121,8 @@
             android:text="Password"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/editText5"
-            app:layout_constraintStart_toStartOf="@+id/editText5" />
+            app:layout_constraintBottom_toTopOf="@+id/su_pass"
+            app:layout_constraintStart_toStartOf="@+id/su_pass" />
 
         <TextView
             android:id="@+id/textView8"
@@ -131,8 +131,8 @@
             android:text="Confirm Password"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/editText6"
-            app:layout_constraintStart_toStartOf="@+id/editText6" />
+            app:layout_constraintBottom_toTopOf="@+id/su_cpass"
+            app:layout_constraintStart_toStartOf="@+id/su_cpass" />
 
         <TextView
             android:id="@+id/textView9"
@@ -141,8 +141,8 @@
             android:text="E-mail"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/editText7"
-            app:layout_constraintStart_toStartOf="@+id/editText7" />
+            app:layout_constraintBottom_toTopOf="@+id/su_email"
+            app:layout_constraintStart_toStartOf="@+id/su_email" />
 
         <Button
             android:id="@+id/signupBtn"
@@ -159,6 +159,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText6" />
+            app:layout_constraintTop_toBottomOf="@+id/su_cpass" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
