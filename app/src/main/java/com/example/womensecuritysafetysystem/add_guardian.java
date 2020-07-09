@@ -1,8 +1,6 @@
 package com.example.womensecuritysafetysystem;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -19,7 +17,7 @@ public class add_guardian extends AppCompatActivity {
         final TextView saveG = (TextView) findViewById(R.id.saveGuardian);
         final TextView name = (TextView) findViewById(R.id.editText);
         final TextView phNo = (TextView) findViewById(R.id.editText1);
-        final TextView email = (TextView) findViewById(R.id.editText2);
+        final TextView email = (TextView) findViewById(R.id.login_uname);
 
         saveG.setOnClickListener(new View.OnClickListener()
 
