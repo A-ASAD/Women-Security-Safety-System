@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,6 @@ public class sign_up extends AppCompatActivity {
         findViewById(R.id.signupBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(sign_up.this, "Sign Up", Toast.LENGTH_SHORT);
                 String uname = ((TextView)findViewById(R.id.su_uname)).getText().toString().trim();
                 String name = ((TextView)findViewById(R.id.su_name)).getText().toString().trim();
                 String pass = ((TextView)findViewById(R.id.su_pass)).getText().toString().trim();
@@ -45,8 +45,8 @@ public class sign_up extends AppCompatActivity {
                 else
                 {
                     DBHelper db = new DBHelper(sign_up.this);
-                    Cursor cursor = db.getReadableDatabase().query("users",null, "username = ? and email = ?",
-                            new String[]{"asad", "asad@gmail.com"},null,null,null);
+                    Cursor cursor = db.getReadableDatabase().query("users",null, "username = ? or email = ?",
+                            new String[]{uname, email},null,null,null);
                     if(cursor.getCount() == 0)
                     {
                         ContentValues user = new ContentValues();
@@ -59,9 +59,18 @@ public class sign_up extends AppCompatActivity {
                                 .setMessage("User added successfully!\nPress OK to continue.")
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        
+                                        Intent home = new Intent(sign_up.this, home.class);
+                                        startActivity(home);
+                                        finish();
                                     }
                                 })
+                                .show();
+                    }
+                    else
+                    {
+                        new AlertDialog.Builder(sign_up.this)
+                                .setMessage("A user with this Username or Email already exists!\nTry changing Email or Username.")
+                                .setNegativeButton(android.R.string.yes, null)
                                 .show();
                     }
                 }
