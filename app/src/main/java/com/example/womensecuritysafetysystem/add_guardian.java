@@ -25,7 +25,6 @@ public class add_guardian extends AppCompatActivity {
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
         username=home.username;
         final TextView saveG = (TextView) findViewById(R.id.saveGuardian);
-        Toast.makeText(this, "username: "+username, Toast.LENGTH_SHORT).show();
 
         saveG.setOnClickListener(new View.OnClickListener()
 

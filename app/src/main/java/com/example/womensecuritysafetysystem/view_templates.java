@@ -26,7 +26,6 @@ public class view_templates extends AppCompatActivity {
         RecyclerView rv = (RecyclerView)findViewById(R.id.temp_rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         DBHelper db = new DBHelper(view_templates.this);
-        Toast.makeText(this, "u: "+username, Toast.LENGTH_SHORT).show();
         Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{username},null,null,null);
         while (cur.moveToNext())
         {
