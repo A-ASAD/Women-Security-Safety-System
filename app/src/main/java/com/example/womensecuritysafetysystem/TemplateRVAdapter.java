@@ -1,4 +1,5 @@
 package com.example.womensecuritysafetysystem;
+import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -67,6 +68,7 @@ public class TemplateRVAdapter extends RecyclerView.Adapter<TemplateRVAdapter.Vi
                                                 int arg1) {
                                 Intent view_templates = new Intent(context, view_templates.class);
                                 context.startActivity(view_templates);
+                                ((Activity)context).finish();
                             }
                         });
                 alertbox.show();

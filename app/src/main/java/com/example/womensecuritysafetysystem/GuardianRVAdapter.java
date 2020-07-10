@@ -1,4 +1,5 @@
 package com.example.womensecuritysafetysystem;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -74,6 +75,7 @@ public class GuardianRVAdapter extends RecyclerView.Adapter<GuardianRVAdapter.Vi
                                                 int arg1) {
                                 Intent view_guardian = new Intent(context, view_guardian.class);
                                 context.startActivity(view_guardian);
+                                ((Activity)context).finish();
 
                             }
                         });
