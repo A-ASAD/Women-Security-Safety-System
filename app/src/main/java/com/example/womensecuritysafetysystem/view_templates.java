@@ -45,5 +45,7 @@ public class view_templates extends AppCompatActivity {
         rv.setAdapter(adapter);
 
 
+
+
     }
 }

@@ -1,11 +1,18 @@
 package com.example.womensecuritysafetysystem;
+import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
@@ -26,7 +33,6 @@ public class TemplateRVAdapter extends RecyclerView.Adapter<TemplateRVAdapter.Vi
 
         TextView template_text;
         Button delete;
-        Button edit;
 
         public ViewHolder(View itemView)
         {
@@ -47,6 +53,25 @@ public class TemplateRVAdapter extends RecyclerView.Adapter<TemplateRVAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         holder.template_text.setText(templates.get(position).template_text);
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tid=templates.get(position).template_id;
+                DBHelper db =new DBHelper(context);
+                int rv = db.getWritableDatabase().delete("templates","id = ?",new String[]{String.valueOf(tid)});
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(v.getRootView().getContext());
+                alertbox.setMessage(rv+" row deleted successfully!\nPress Ok to continue.");
+                alertbox.setNeutralButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0,
+                                                int arg1) {
+                                Intent view_templates = new Intent(context, view_templates.class);
+                                context.startActivity(view_templates);
+                            }
+                        });
+                alertbox.show();
+            }
+        });
     }
 
     @Override
