@@ -18,7 +18,14 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
-        username=login.username;
+        if(login.username!="")
+        {
+            username=login.username;
+        }
+        else
+        {
+            username=sign_up.username;
+        }
         final TextView add_guardian = (TextView)findViewById(R.id.button3);
         add_guardian.setOnClickListener(new View.OnClickListener() {
             @Override

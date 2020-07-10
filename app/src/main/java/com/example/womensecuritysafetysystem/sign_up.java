@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.regex.Pattern;
 
 public class sign_up extends AppCompatActivity {
-
+    public static String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,11 +71,13 @@ public class sign_up extends AppCompatActivity {
                                 .setMessage("User added successfully!\nPress OK to continue.")
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        username=uname;
 
                                         new AlertDialog.Builder(sign_up.this)
                                                 .setMessage("Do you want to save credentials for next login?")
                                                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int which) {
+                                                        username=uname;
 
                                                         SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(sign_up.this);
                                                         SharedPreferences.Editor Ed=sp.edit();
@@ -91,6 +93,7 @@ public class sign_up extends AppCompatActivity {
                                                 })
                                                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int which) {
+                                                        username=uname;
                                                         login.lgn.finish();
                                                         Intent home = new Intent(sign_up.this, home.class);
                                                         startActivity(home);
