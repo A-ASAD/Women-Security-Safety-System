@@ -24,15 +24,14 @@ public class add_template extends AppCompatActivity {
         username=home.username;
         final TextView save = (TextView)findViewById(R.id.saveTemp);
         save.setOnClickListener(new View.OnClickListener() {
-            final String text = ((TextView)findViewById(R.id.msg)).getText().toString().trim();
+            final TextView text = (TextView)findViewById(R.id.msg);
             @Override
             public void onClick(View v) {
-                if(text.equals("")){
+                if(text.getText().toString().trim().equals("")){
                     new AlertDialog.Builder(add_template.this)
                             .setMessage("Please fill out all the fields!")
                             .setNegativeButton(android.R.string.yes, null)
                             .show();
-                    Toast.makeText(getBaseContext(), "Error: Empty Field!", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     DBHelper db = new DBHelper(add_template.this);
@@ -40,8 +39,9 @@ public class add_template extends AppCompatActivity {
                     while (cur.moveToNext()) {
                         uid = cur.getInt(0);
                     }
+                    Toast.makeText(add_template.this, "uid: "+uid, Toast.LENGTH_SHORT).show();
                     ContentValues template = new ContentValues();
-                    template.put("template",text);
+                    template.put("template",text.getText().toString().trim());
                     template.put("uid",uid);
                     db.getWritableDatabase().insert("templates",null, template);
 

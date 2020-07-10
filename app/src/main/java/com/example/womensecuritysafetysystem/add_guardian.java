@@ -46,6 +46,7 @@ public class add_guardian extends AppCompatActivity {
                     {
                          uid=cur.getInt(0);
                     }
+                    Toast.makeText(add_guardian.this, "uid: "+uid, Toast.LENGTH_SHORT).show();
 
                     Cursor cursor = db.getReadableDatabase().query("guardians",null, "phno = ? or email = ?",
                             new String[]{g_phno, g_email},null,null,null);
