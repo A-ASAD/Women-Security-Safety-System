@@ -47,5 +47,23 @@ public class home extends AppCompatActivity {
                 finish();
             }
         });
+        final TextView view_guardian= (TextView)findViewById(R.id.button4);
+        view_guardian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent view_guardian = new Intent(home.this, view_guardian.class);
+                startActivity(view_guardian);
+            }
+        });
+
+        final TextView view_templates = (TextView)findViewById(R.id.button6);
+        view_templates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent view_templates = new Intent(home.this, view_templates.class);
+                startActivity(view_templates);
+            }
+        });
+
     }
 }
