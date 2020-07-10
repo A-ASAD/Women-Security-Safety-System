@@ -33,7 +33,6 @@ public class TemplateRVAdapter extends RecyclerView.Adapter<TemplateRVAdapter.Vi
             super(itemView);
             template_text = itemView.findViewById(R.id.template_text);
             delete = itemView.findViewById(R.id.delete_temp);
-            edit = itemView.findViewById(R.id.edit_temp);
         }
     }
 

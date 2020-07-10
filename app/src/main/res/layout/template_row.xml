@@ -30,36 +30,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/edit_temp"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/general_btn_bg"
-        android:fontFamily="@font/cardo"
-        android:maxWidth="150dp"
-        android:text="Edit"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/delete_temp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/template_text" />
 
     <Button
         android:id="@+id/delete_temp"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/general_btn_bg"
         android:fontFamily="@font/cardo"
         android:maxWidth="150dp"
         android:text="Delete"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edit_temp"
-        app:layout_constraintTop_toTopOf="@+id/edit_temp" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/template_text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

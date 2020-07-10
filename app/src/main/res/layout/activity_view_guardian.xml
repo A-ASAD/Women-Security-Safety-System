@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/dancing_script"
-            android:text="View Guardians"
+            android:text="Guardians"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
