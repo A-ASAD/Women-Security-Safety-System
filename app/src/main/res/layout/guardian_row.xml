@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
+    android:background="@drawable/view_border"
+    android:elevation="10dp"
     android:padding="1dp">
 
 
@@ -15,43 +16,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
         android:layout_marginTop="2dp"
-        android:textSize="18sp"
-        android:background="@color/colorPrimary"
+        android:layout_marginEnd="2dp"
         android:ellipsize="end"
         android:fontFamily="@font/cardo"
+        android:gravity="center"
         android:padding="5dp"
         android:scrollHorizontally="true"
         android:text="Guadian Name"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/guardian_no"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/guardian_no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
         android:layout_marginTop="2dp"
-        android:padding="5dp"
-        android:textSize="18sp"
-        android:text="Guadian Phone"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
+        android:layout_marginEnd="2dp"
+        android:ellipsize="end"
         android:fontFamily="@font/cardo"
+        android:gravity="center"
+        android:padding="5dp"
+        android:scrollHorizontally="true"
+        android:text="Guadian Phone"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guardian_mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guardian_name"
-        android:scrollHorizontally="true"
-        android:ellipsize="end"
-        android:gravity="center"/>
+        app:layout_constraintTop_toBottomOf="@+id/guardian_name" />
 
     <TextView
         android:id="@+id/guardian_mail"
@@ -60,15 +58,14 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="2dp"
-        android:background="@color/colorPrimary"
         android:ellipsize="end"
         android:fontFamily="@font/cardo"
         android:gravity="center"
         android:padding="5dp"
-        android:textSize="18sp"
         android:scrollHorizontally="true"
         android:text="Guadian Email"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintEnd_toEndOf="@+id/delete_temp"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,38 +76,37 @@
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="2dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guardian_mail"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:gravity="center"
-        android:background="@color/colorGrey">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guardian_mail">
 
         <Button
             android:id="@+id/guardian_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit"
             android:layout_marginEnd="2dp"
-            android:textColor="@color/colorPrimary"
-            android:background="#ffffff"/>
+            android:background="@drawable/general_btn_bg"
+            android:text="Edit"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/guardian_del"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
-            android:textColor="@color/colorPrimary"
             android:layout_marginStart="2dp"
-            android:background="#ffffff"/>
+            android:background="@drawable/general_btn_bg"
+            android:text="Delete"
+            android:textColor="@android:color/white" />
 
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

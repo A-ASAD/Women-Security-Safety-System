@@ -5,11 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/cardview_shadow_end_color">
         <ImageView
             android:id="@+id/imageView4"
@@ -62,16 +59,17 @@
             app:layout_constraintTop_toBottomOf="@+id/view1"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:background="@color/colorGrey"
             android:id="@+id/guardian_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
             android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView4"/>
+            app:layout_constraintTop_toBottomOf="@id/textView4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

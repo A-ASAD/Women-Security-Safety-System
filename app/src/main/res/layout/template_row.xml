@@ -1,66 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
+    android:background="@drawable/view_border"
+    android:elevation="10dp"
     android:padding="1dp">
 
 
     <TextView
         android:id="@+id/template_text"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="5dp"
-        android:padding="5dp"
-        android:text="TextView"
-        android:textSize="15sp"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:ellipsize="end"
         android:fontFamily="@font/cardo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/edit_temp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:maxLines="4"
+        android:padding="5dp"
         android:scrollHorizontally="true"
-        android:ellipsize="end"/>
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/edit_temp"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/general_btn_bg"
         android:fontFamily="@font/cardo"
-        android:text="Edit"
         android:maxWidth="150dp"
+        android:text="Edit"
         android:textColor="#FFFFFF"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toTopOf="@id/delete_temp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/template_text"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/delete_temp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/template_text" />
 
     <Button
         android:id="@+id/delete_temp"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Delete"
-        android:maxWidth="150dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:textColor="#FFFFFF"
-        android:background="@color/colorPrimary"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/general_btn_bg"
         android:fontFamily="@font/cardo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:maxWidth="150dp"
+        android:text="Delete"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/template_text"
-        app:layout_constraintTop_toBottomOf="@id/edit_temp" />
+        app:layout_constraintStart_toEndOf="@+id/edit_temp"
+        app:layout_constraintTop_toTopOf="@+id/edit_temp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
