@@ -35,19 +35,49 @@ public class home extends AppCompatActivity {
                 startActivity(add_template);
             }
         });
+
+
         findViewById(R.id.logout_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(home.this);
-                SharedPreferences.Editor Ed=sp.edit();
-                Ed.putBoolean("isLogin", false);
-                Ed.commit();
-
-                Intent login = new Intent(home.this, login.class);
-                startActivity(login);
-                Toast.makeText(home.this, "Logged out successfully!", Toast.LENGTH_SHORT).show();
-                finish();
+                logout();
             }
         });
+
+        findViewById(R.id.logout_btn2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+        final TextView view_guardian= (TextView)findViewById(R.id.button4);
+        view_guardian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent view_guardian = new Intent(home.this, view_guardian.class);
+                startActivity(view_guardian);
+            }
+        });
+
+        final TextView view_templates = (TextView)findViewById(R.id.button6);
+        view_templates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent view_templates = new Intent(home.this, view_templates.class);
+                startActivity(view_templates);
+            }
+        });
+    }
+
+    public void logout()
+    {
+        SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(home.this);
+        SharedPreferences.Editor Ed=sp.edit();
+        Ed.putBoolean("isLogin", false);
+        Ed.commit();
+        Intent login = new Intent(home.this, login.class);
+        startActivity(login);
+        Toast.makeText(home.this, "Logged out successfully!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

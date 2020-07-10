@@ -13,6 +13,8 @@
         <activity android:name=".home"></activity>
         <activity android:name=".add_guardian"></activity>
         <activity android:name=".add_template"></activity>
+	<activity android:name=".view_templates"></activity>
+        <activity android:name=".view_guardian"></activity>
         <activity
             android:name=".login"
             android:screenOrientation="portrait" />
