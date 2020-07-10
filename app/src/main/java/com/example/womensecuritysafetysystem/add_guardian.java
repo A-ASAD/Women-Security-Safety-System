@@ -25,6 +25,7 @@ public class add_guardian extends AppCompatActivity {
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
         username=home.username;
         final TextView saveG = (TextView) findViewById(R.id.saveGuardian);
+        Toast.makeText(this, "username: "+username, Toast.LENGTH_SHORT).show();
 
         saveG.setOnClickListener(new View.OnClickListener()
 
@@ -40,13 +41,13 @@ public class add_guardian extends AppCompatActivity {
                             .setNegativeButton(android.R.string.yes, null)
                             .show();
                 } else {
+
                     DBHelper db = new DBHelper(add_guardian.this);
                     Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{username},null,null,null);
                     while (cur.moveToNext())
                     {
                          uid=cur.getInt(0);
                     }
-                    Toast.makeText(add_guardian.this, "uid: "+uid, Toast.LENGTH_SHORT).show();
 
                     Cursor cursor = db.getReadableDatabase().query("guardians",null, "phno = ? or email = ?",
                             new String[]{g_phno, g_email},null,null,null);

@@ -23,6 +23,7 @@ public class add_template extends AppCompatActivity {
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
         username=home.username;
         final TextView save = (TextView)findViewById(R.id.saveTemp);
+        Toast.makeText(this, "username: "+username, Toast.LENGTH_SHORT).show();
         save.setOnClickListener(new View.OnClickListener() {
             final TextView text = (TextView)findViewById(R.id.msg);
             @Override
@@ -39,7 +40,6 @@ public class add_template extends AppCompatActivity {
                     while (cur.moveToNext()) {
                         uid = cur.getInt(0);
                     }
-                    Toast.makeText(add_template.this, "uid: "+uid, Toast.LENGTH_SHORT).show();
                     ContentValues template = new ContentValues();
                     template.put("template",text.getText().toString().trim());
                     template.put("uid",uid);
