@@ -43,13 +43,7 @@ public class home extends AppCompatActivity {
                 logout();
             }
         });
-
-        findViewById(R.id.logout_btn2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout();
-            }
-        });
+        
         final TextView view_guardian= (TextView)findViewById(R.id.button4);
         view_guardian.setOnClickListener(new View.OnClickListener() {
             @Override
