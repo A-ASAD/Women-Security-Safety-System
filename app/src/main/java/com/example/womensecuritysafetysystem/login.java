@@ -17,6 +17,7 @@ import android.widget.Toast;
 public class login extends AppCompatActivity {
 
     public static Activity lgn;
+    public static String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBHelper db = new DBHelper(login.this);
-                String uname = ((TextView)findViewById(R.id.login_uname)).getText().toString().trim();
+                final String uname = ((TextView)findViewById(R.id.login_uname)).getText().toString().trim();
                 String pass = ((TextView)findViewById(R.id.login_pass)).getText().toString().trim();
                 if(uname.equals("") || pass.equals(""))
                 {
@@ -65,6 +66,7 @@ public class login extends AppCompatActivity {
                                 .setMessage("Do you want to save credentials for next login?")
                                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        username=uname;
 
                                         SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(login.this);
                                         SharedPreferences.Editor Ed=sp.edit();
@@ -78,6 +80,7 @@ public class login extends AppCompatActivity {
                                 })
                                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        username=uname;
                                         Intent home = new Intent(login.this, home.class);
                                         startActivity(home);
                                         finish();

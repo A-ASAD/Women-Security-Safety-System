@@ -11,12 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class home extends AppCompatActivity {
+    public static String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
+        username=login.username;
         final TextView add_guardian = (TextView)findViewById(R.id.button3);
         add_guardian.setOnClickListener(new View.OnClickListener() {
             @Override
