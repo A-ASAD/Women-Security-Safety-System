@@ -48,7 +48,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
 
                 new AlertDialog.Builder(context)
                         .setMessage("Following message will be sent:\n\n\""+templates.get(position)+"\"\n\nPress Ok to confirm.")
-                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                     if (context.checkSelfPermission(Manifest.permission.SEND_SMS) ==
@@ -87,7 +87,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
 
                             }
                         })
-                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(context, "Alert Cancelled!",Toast.LENGTH_SHORT).show();
                             }
