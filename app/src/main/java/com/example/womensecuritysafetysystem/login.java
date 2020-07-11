@@ -24,8 +24,8 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         SharedPreferences sp=PreferenceManager.getDefaultSharedPreferences(login.this);
-        Boolean isLogin=sp.getBoolean("isLogin", false);
-        if(isLogin)
+        String user=sp.getString("uname", null);
+        if(user != null)
         {
             Intent home = new Intent(login.this, home.class);
             startActivity(home);
@@ -70,7 +70,7 @@ public class login extends AppCompatActivity {
 
                                         SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(login.this);
                                         SharedPreferences.Editor Ed=sp.edit();
-                                        Ed.putBoolean("isLogin", true);
+                                        Ed.putString("uname", uname);
                                         Ed.commit();
 
                                         Intent home = new Intent(login.this, home.class);

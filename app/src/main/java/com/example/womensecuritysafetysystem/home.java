@@ -18,7 +18,13 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
-        if(login.username!="")
+        SharedPreferences sp=PreferenceManager.getDefaultSharedPreferences(home.this);
+        String user=sp.getString("uname", null);
+        if(user != null)
+        {
+            username = user;
+        }
+        else if(login.username != null)
         {
             username=login.username;
         }
@@ -75,7 +81,7 @@ public class home extends AppCompatActivity {
     {
         SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(home.this);
         SharedPreferences.Editor Ed=sp.edit();
-        Ed.putBoolean("isLogin", false);
+        Ed.putString("uname", "");
         Ed.commit();
         Intent login = new Intent(home.this, login.class);
         startActivity(login);

@@ -81,7 +81,7 @@ public class sign_up extends AppCompatActivity {
 
                                                         SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(sign_up.this);
                                                         SharedPreferences.Editor Ed=sp.edit();
-                                                        Ed.putBoolean("isLogin", true);
+                                                        Ed.putString("uname", uname);
                                                         Ed.commit();
 
                                                         login.lgn.finish();

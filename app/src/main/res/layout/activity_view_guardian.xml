@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="193dp"
-        android:layout_height="29dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/dancing_script"
         android:text="Women Security System"
         android:textColor="@color/colorPrimary"
@@ -34,7 +34,7 @@
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
+        android:layout_height="2dp"
         android:layout_marginTop="2.5dp"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
