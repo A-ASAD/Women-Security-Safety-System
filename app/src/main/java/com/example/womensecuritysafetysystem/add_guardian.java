@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +40,22 @@ public class add_guardian extends AppCompatActivity {
                             .setMessage("Please fill out all the fields!")
                             .setNegativeButton(android.R.string.yes, null)
                             .show();
-                } else {
+                }
+                else if(g_phno.length()<11)
+                {
+                    new AlertDialog.Builder(add_guardian.this)
+                            .setMessage("Please enter a Valid Number!")
+                            .setNegativeButton(android.R.string.yes, null)
+                            .show();
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(g_email).matches())
+                {
+                    new AlertDialog.Builder(add_guardian.this)
+                            .setMessage("Please enter a valid Email address!")
+                            .setNegativeButton(android.R.string.yes, null)
+                            .show();
+                }
+                else {
 
                     DBHelper db = new DBHelper(add_guardian.this);
                     Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{username},null,null,null);
