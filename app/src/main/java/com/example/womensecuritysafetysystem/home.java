@@ -75,13 +75,21 @@ public class home extends AppCompatActivity {
                 startActivity(view_templates);
             }
         });
+
+        findViewById(R.id.alert_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent select_template = new Intent(home.this, select_template.class);
+                startActivity(select_template);
+            }
+        });
     }
 
     public void logout()
     {
         SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(home.this);
         SharedPreferences.Editor Ed=sp.edit();
-        Ed.putString("uname", "");
+        Ed.putString("uname", null);
         Ed.commit();
         Intent login = new Intent(home.this, login.class);
         startActivity(login);

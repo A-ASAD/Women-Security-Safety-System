@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.womensecuritysafetysystem">
-
+    <uses-permission android:name="android.permission.SEND_SMS"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/women_logo"
@@ -9,12 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sign_up"></activity>
-        <activity android:name=".home"></activity>
-        <activity android:name=".add_guardian"></activity>
-        <activity android:name=".add_template"></activity>
-	<activity android:name=".view_templates"></activity>
-        <activity android:name=".view_guardian"></activity>
+        <activity android:name=".select_template"></activity>
+        <activity android:name=".sign_up" />
+        <activity android:name=".home" />
+        <activity android:name=".add_guardian" />
+        <activity android:name=".add_template" />
+        <activity android:name=".view_templates" />
+        <activity android:name=".view_guardian" />
         <activity
             android:name=".login"
             android:screenOrientation="portrait" />
