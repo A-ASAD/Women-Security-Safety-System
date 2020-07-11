@@ -73,9 +73,9 @@ public class GuardianRVAdapter extends RecyclerView.Adapter<GuardianRVAdapter.Vi
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0,
                                                 int arg1) {
-                                Intent view_guardian = new Intent(context, view_guardian.class);
-                                context.startActivity(view_guardian);
-                                ((Activity)context).finish();
+                                guardians.remove(position);
+                                notifyItemRemoved(position);
+                                notifyItemRangeChanged(position,guardians.size());
 
                             }
                         });

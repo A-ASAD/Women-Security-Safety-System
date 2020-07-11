@@ -66,9 +66,9 @@ public class TemplateRVAdapter extends RecyclerView.Adapter<TemplateRVAdapter.Vi
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0,
                                                 int arg1) {
-                                Intent view_templates = new Intent(context, view_templates.class);
-                                context.startActivity(view_templates);
-                                ((Activity)context).finish();
+                                templates.remove(position);
+                                notifyItemRemoved(position);
+                                notifyItemRangeChanged(position,templates.size());
                             }
                         });
                 alertbox.show();
