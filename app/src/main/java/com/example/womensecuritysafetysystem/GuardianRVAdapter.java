@@ -76,7 +76,6 @@ public class GuardianRVAdapter extends RecyclerView.Adapter<GuardianRVAdapter.Vi
                                 guardians.remove(position);
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position,guardians.size());
-
                             }
                         });
                 alertbox.show();
