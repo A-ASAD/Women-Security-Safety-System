@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/cardview_shadow_end_color">
     <ImageView
         android:id="@+id/imageView4"
@@ -34,7 +34,7 @@
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
+        android:layout_height="2dp"
         android:layout_marginTop="2.5dp"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
