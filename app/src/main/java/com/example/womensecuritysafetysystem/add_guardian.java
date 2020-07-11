@@ -112,21 +112,27 @@ public class add_guardian extends AppCompatActivity {
                         }
                     }
                     else { //for editing record
-                        int rows = db.getWritableDatabase().update("guardians", guardian, "id=?",new String[]{gid+""});
-                        if (rows>0)
-                        {
+                        Cursor cursor = db.getReadableDatabase().query("guardians",null, "(phno = ? or email = ?) and id != ?",
+                                new String[]{g_phno, g_email, gid+""},null,null,null);
+                        if(cursor.getCount()==0) {
+                            int rows = db.getWritableDatabase().update("guardians", guardian, "id=?", new String[]{gid + ""});
+                            if (rows > 0) {
+                                new AlertDialog.Builder(add_guardian.this)
+                                        .setMessage("Guardian Updated successfully!\nPress OK to continue.")
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }
+                        else {
                             new AlertDialog.Builder(add_guardian.this)
-                                    .setMessage("Guardian Updated successfully!\nPress OK to continue.")
-                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-                                    {
-                                        public void onClick(DialogInterface dialog, int which)
-                                        {
-                                            finish();
-                                        }
-                                    })
+                                    .setMessage("A user with this phone no. or Email already exists!\nTry changing Email or phone no.")
+                                    .setNegativeButton(android.R.string.yes, null)
                                     .show();
                         }
-
                     }
                 }
             }
