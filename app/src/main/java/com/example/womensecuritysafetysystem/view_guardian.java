@@ -19,7 +19,7 @@ public class view_guardian extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_guardian);
+                setContentView(R.layout.activity_view_guardian);
         getSupportActionBar().hide();
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
 

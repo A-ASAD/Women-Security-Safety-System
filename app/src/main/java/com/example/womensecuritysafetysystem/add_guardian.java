@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,22 @@ public class add_guardian extends AppCompatActivity {
         username=home.username;
         final TextView saveG = (TextView) findViewById(R.id.saveGuardian);
 
+        Bundle extras = getIntent().getExtras();
+        final int gid = extras.getInt("recordNo");
+
+        if(gid!=-1){
+            String guard_name = extras.getString("name");
+            String guard_email = extras.getString("email");
+            String guard_no= extras.getString("phone");
+            TextView heading = findViewById(R.id.textView4);
+            heading.setText("Update Guardian");
+            EditText guardian_name = findViewById(R.id.g_name);
+            EditText guardian_mail= findViewById(R.id.g_email);
+            EditText guardian_no = findViewById(R.id.g_phno);
+            guardian_name.setText(guard_name);
+            guardian_mail.setText(guard_email);
+            guardian_no.setText(guard_no);
+        }
         saveG.setOnClickListener(new View.OnClickListener()
 
         {
@@ -64,34 +81,52 @@ public class add_guardian extends AppCompatActivity {
                          uid=cur.getInt(0);
                     }
 
-                    Cursor cursor = db.getReadableDatabase().query("guardians",null, "phno = ? or email = ?",
-                            new String[]{g_phno, g_email},null,null,null);
-                    if(cursor.getCount() == 0)
-                    {
-                        ContentValues guardian = new ContentValues();
-                        guardian.put("name",g_name);
-                        guardian.put("phno",g_phno);
-                        guardian.put("email",g_email);
-                        guardian.put("uid",uid);
-                        db.getWritableDatabase().insert("guardians",null, guardian);
+                    ContentValues guardian = new ContentValues();
+                    guardian.put("name",g_name);
+                    guardian.put("phno",g_phno);
+                    guardian.put("email",g_email);
+                    guardian.put("uid",uid);
+                    if(gid==-1){ //for new record
+                        Cursor cursor = db.getReadableDatabase().query("guardians",null, "phno = ? or email = ?",
+                                new String[]{g_phno, g_email},null,null,null);
+                        if(cursor.getCount() == 0)
+                        {
+                            db.getWritableDatabase().insert("guardians",null, guardian);
 
-                        new AlertDialog.Builder(add_guardian.this)
-                                .setMessage("Guardian added successfully!\nPress OK to continue.")
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
-                                {
-                                    public void onClick(DialogInterface dialog, int which)
+                            new AlertDialog.Builder(add_guardian.this)
+                                    .setMessage("Guardian added successfully!\nPress OK to continue.")
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
                                     {
-                                        finish();
-                                    }
-                                })
-                                .show();
+                                        public void onClick(DialogInterface dialog, int which)
+                                        {
+                                            finish();
+                                        }
+                                    })
+                                    .show();
+                        }
+                        else {
+                            new AlertDialog.Builder(add_guardian.this)
+                                    .setMessage("A user with this phone no. or Email already exists!\nTry changing Email or phone no.")
+                                    .setNegativeButton(android.R.string.yes, null)
+                                    .show();
+                        }
                     }
-                    else
-                    {
-                        new AlertDialog.Builder(add_guardian.this)
-                                .setMessage("A user with this phone no. or Email already exists!\nTry changing Email or phone no.")
-                                .setNegativeButton(android.R.string.yes, null)
-                                .show();
+                    else { //for editing record
+                        int rows = db.getWritableDatabase().update("guardians", guardian, "id=?",new String[]{gid+""});
+                        if (rows>0)
+                        {
+                            new AlertDialog.Builder(add_guardian.this)
+                                    .setMessage("Guardian Updated successfully!\nPress OK to continue.")
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                                    {
+                                        public void onClick(DialogInterface dialog, int which)
+                                        {
+                                            finish();
+                                        }
+                                    })
+                                    .show();
+                        }
+
                     }
                 }
             }

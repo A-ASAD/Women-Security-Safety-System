@@ -31,6 +31,7 @@ public class home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent add_guardian = new Intent(home.this, add_guardian.class);
+                add_guardian.putExtra("recordNo", -1);
                 startActivity(add_guardian);
             }
         });

@@ -80,9 +80,24 @@ public class GuardianRVAdapter extends RecyclerView.Adapter<GuardianRVAdapter.Vi
                             }
                         });
                 alertbox.show();
-
             }
         });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int gid=guardians.get(position).guardian_id;
+                String g_name = guardians.get(position).guardian_name;
+                String g_email = guardians.get(position).email;
+                String g_no= guardians.get(position).phone_no;
+                Intent add_guardian = new Intent(context, add_guardian.class);
+                add_guardian.putExtra("recordNo", gid);
+                add_guardian.putExtra("name", g_name);
+                add_guardian.putExtra("email", g_email);
+                add_guardian.putExtra("phone", g_no);
+                context.startActivity(add_guardian);
+            }
+        });
+
     }
 
     @Override
