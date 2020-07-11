@@ -42,9 +42,5 @@ public class view_templates extends AppCompatActivity {
         rv.setLayoutManager(llm);
         TemplateRVAdapter adapter = new TemplateRVAdapter(this,list);
         rv.setAdapter(adapter);
-
-
-
-
     }
 }
