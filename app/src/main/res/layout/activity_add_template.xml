@@ -18,12 +18,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/colored_logo" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/cardo"
-        android:text="Women Security System"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Women Security &amp; Safety System"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -41,12 +42,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="122dp"
         android:layout_height="32dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/cardo"
+        android:fontFamily="sans-serif-condensed"
         android:text="Add Template"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
