@@ -66,7 +66,15 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                                     else
                                     {
                                         int uid=0;
+                                        String naam="";
+                                        sender = new GMailSender(user,password);
+                                        sb="Alert(Women Safety & Security)!";
                                         DBHelper db = new DBHelper(context);
+                                        Cursor name = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
+                                        while (name.moveToNext())
+                                        {
+                                            naam=name.getString(1);
+                                        }
                                         Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
                                         while (cur.moveToNext())
                                         {
@@ -80,6 +88,11 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                                                 UserGuardian u1 = new UserGuardian(cursor.getString(1), cursor.getString(2),
                                                         cursor.getString(3), cursor.getInt(0) );
                                                 SendSMS( u1.phone_no,templates.get(position),u1.guardian_name);
+                                                bd="**** SENDER ****\nName: "+naam.toUpperCase()+"\nE-mail: "+u1.email+
+                                                        "\n\n** MESSAGE **\n"+templates.get(position)+
+                                                        "\n\n***\nThis mail is sent from Women Security System";
+                                                rp=u1.email;
+                                                new MyAsynClass().execute();
                                             }
                                         }
                                         else
@@ -91,49 +104,6 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                                         }
                                     }
                                 }
-                                //email part
-                                String naam="";
-                                DBHelper db = new DBHelper(context);
-                                Cursor name = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
-                                while (name.moveToNext())
-                                {
-                                    naam=name.getString(1);
-                                }
-                                sender = new GMailSender(user,password);
-                                sb="Alert(Women Safety & Security)!";
-                                bd="Sender Name : *** "+naam+" ***\n\n "+templates.get(position)+"\n\n***This mail is sent from Women Security System";
-                                int uid=0;
-                                Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
-                                while (cur.moveToNext())
-                                {
-                                    uid=cur.getInt(0);
-                                }
-                                Cursor cursor = db.getReadableDatabase().query("guardians",null,"uid = ?",new String[]{String.valueOf(uid)},null,null,null);
-                                if(cursor.getCount() > 0)
-                                {
-                                    while (cursor.moveToNext())
-                                    {
-                                        UserGuardian u1 = new UserGuardian(cursor.getString(1), cursor.getString(2),
-                                                cursor.getString(3), cursor.getInt(0) );
-                                        rp=u1.email;
-                                        new MyAsynClass().execute();
-                                    }
-                                }
-                                else
-                                {
-                                    new AlertDialog.Builder(context)
-                                            .setMessage("You have no guardians added yet!!")
-                                            .setNegativeButton("OK", null)
-                                            .show();
-                                }
-
-
-
-
-
-
-
-
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -151,7 +121,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
          protected void onPreExecute(){
              super.onPreExecute();
              pDialog=new ProgressDialog(context);
-             pDialog.setMessage("please wait...");
+             pDialog.setMessage("Please wait, sending e-mails...");
              pDialog.show();
          }
          protected Void doInBackground(Void...mApi){
@@ -167,7 +137,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
          {
              super.onPostExecute(result);
              pDialog.cancel();
-             Toast.makeText(context, "mail send", Toast.LENGTH_SHORT).show();
+             Toast.makeText(context, "Mail Sent", Toast.LENGTH_SHORT).show();
          }
     }
 

@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -13,10 +14,12 @@ import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,6 +36,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class home extends AppCompatActivity {
+    ArrayList<String> templates;
+    GMailSender sender;
+    String user="ssafity52@gmail.com";
+    String password="mcproject";
+    String sb,bd,rp;
     public static String username;
     Button btLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -147,7 +155,15 @@ public class home extends AppCompatActivity {
                         );
 
                          int uid=0;
+                         String naam="";
                          DBHelper db = new DBHelper(home.this);
+                         Cursor name = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
+                         while (name.moveToNext())
+                         {
+                             naam=name.getString(1);
+                         }
+                         sender = new GMailSender(user,password);
+                         sb="Alert(Women Safety & Security)!";
                          Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
                          while (cur.moveToNext())
                          {
@@ -161,6 +177,11 @@ public class home extends AppCompatActivity {
                                  UserGuardian u1 = new UserGuardian(cursor.getString(1), cursor.getString(2),
                                          cursor.getString(3), cursor.getInt(0) );
                                  SendSMS( u1.phone_no,addresses.get(0).getAddressLine(0),u1.guardian_name);
+                                 bd="**** SENDER ****\nName: "+naam.toUpperCase()+"\nE-mail: "+u1.email+
+                                         "\n\n** MESSAGE **\nPlease help me. I'm at:\n"
+                                         +addresses.get(0).getAddressLine(0)+"\n\n***\nThis mail is sent from Women Security System";
+                                 rp=u1.email;
+                                 new home.MyAsynClass().execute();
                              }
                          }
                          else
@@ -177,6 +198,32 @@ public class home extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    class MyAsynClass extends AsyncTask<Void,Void,Void> {
+        ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            pDialog=new ProgressDialog(home.this);
+            pDialog.setMessage("Please wait, sending e-mails...");
+            pDialog.show();
+        }
+        protected Void doInBackground(Void...mApi){
+            try {
+                sender.sendMail(sb,bd,user,rp);
+                Log.d("send","done");
+            } catch (Exception e) {
+                Log.d("exceptionsending",e.toString());
+            }
+            return null;
+        }
+        protected void onPostExecute(Void result)
+        {
+            super.onPostExecute(result);
+            pDialog.cancel();
+            Toast.makeText(home.this, "Mail Sent", Toast.LENGTH_SHORT).show();
+        }
     }
 
     void SendSMS(String num, String msg, String name)
