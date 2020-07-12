@@ -2,12 +2,15 @@ package com.example.womensecuritysafetysystem;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,10 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
 
     Context context;
     ArrayList<String> templates;
+    GMailSender sender;
+    String user="ssafity52@gmail.com";
+    String password="mcproject";
+    String sb,bd,rp;
     public SelectTemplateRVAdapter(Context c, ArrayList<String> t)
     {
         context = c;
@@ -47,7 +54,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
             public void onClick(View v) {
 
                 new AlertDialog.Builder(context)
-                        .setMessage("Following message will be sent:\n\n\""+templates.get(position)+"\"\n\nPress Ok to confirm.")
+                        .setMessage("Following message will be sent as [ SMS and Mail ]:\n\n\""+templates.get(position)+"\"\n\nPress Ok to confirm.")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -84,6 +91,48 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                                         }
                                     }
                                 }
+                                //email part
+                                String naam="";
+                                DBHelper db = new DBHelper(context);
+                                Cursor name = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
+                                while (name.moveToNext())
+                                {
+                                    naam=name.getString(1);
+                                }
+                                sender = new GMailSender(user,password);
+                                sb="Alert(Women Safety & Security)!";
+                                bd="Sender Name : *** "+naam+" ***\n\n "+templates.get(position)+"\n\n***This mail is sent from Women Security System";
+                                int uid=0;
+                                Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
+                                while (cur.moveToNext())
+                                {
+                                    uid=cur.getInt(0);
+                                }
+                                Cursor cursor = db.getReadableDatabase().query("guardians",null,"uid = ?",new String[]{String.valueOf(uid)},null,null,null);
+                                if(cursor.getCount() > 0)
+                                {
+                                    while (cursor.moveToNext())
+                                    {
+                                        UserGuardian u1 = new UserGuardian(cursor.getString(1), cursor.getString(2),
+                                                cursor.getString(3), cursor.getInt(0) );
+                                        rp=u1.email;
+                                        new MyAsynClass().execute();
+                                    }
+                                }
+                                else
+                                {
+                                    new AlertDialog.Builder(context)
+                                            .setMessage("You have no guardians added yet!!")
+                                            .setNegativeButton("OK", null)
+                                            .show();
+                                }
+
+
+
+
+
+
+
 
                             }
                         })
@@ -95,6 +144,31 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                         .show();
             }
         });
+    }
+    class MyAsynClass extends AsyncTask<Void,Void,Void> {
+         ProgressDialog pDialog;
+         @Override
+         protected void onPreExecute(){
+             super.onPreExecute();
+             pDialog=new ProgressDialog(context);
+             pDialog.setMessage("please wait...");
+             pDialog.show();
+         }
+         protected Void doInBackground(Void...mApi){
+             try {
+                 sender.sendMail(sb,bd,user,rp);
+                 Log.d("send","done");
+             } catch (Exception e) {
+                 Log.d("exceptionsending",e.toString());
+             }
+             return null;
+         }
+         protected void onPostExecute(Void result)
+         {
+             super.onPostExecute(result);
+             pDialog.cancel();
+             Toast.makeText(context, "mail send", Toast.LENGTH_SHORT).show();
+         }
     }
 
     void SendSMS(String num, String msg, String name)
