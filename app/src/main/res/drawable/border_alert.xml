@@ -6,7 +6,7 @@
         <corners android:radius="50dp"/>
     </shape>
 </item>
-    <item android:drawable="@drawable/alert" android:left="10dp"
-        android:right="10dp" android:top="10dp" android:bottom="10dp">
+    <item android:drawable="@drawable/alert" android:left="7dp"
+        android:right="7dp" android:top="7dp" android:bottom="7dp">
     </item>
 </layer-list>
