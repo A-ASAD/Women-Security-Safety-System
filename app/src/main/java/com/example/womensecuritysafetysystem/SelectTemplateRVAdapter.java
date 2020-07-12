@@ -100,11 +100,10 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
     void SendSMS(String num, String msg, String name)
     {
         try {
-//            SmsManager smsManager = SmsManager.getDefault();
-//            ArrayList<String> parts = smsManager.divideMessage(msg+"\n***\nThis message is sent from WSSS\n***");
-//            smsManager.sendMultipartTextMessage(num, null, parts,
-//                    null, null);
-            //msManager.sendTextMessage(num, null, msg+"\n***\nThis message is sent from WSSS\n***", null, null);
+            SmsManager smsManager = SmsManager.getDefault();
+            ArrayList<String> parts = smsManager.divideMessage(msg+"\n***\nThis message is sent from Women Security System");
+            smsManager.sendMultipartTextMessage(num, null, parts,
+                    null, null);
             Toast.makeText(context, "Message sent to "+name,Toast.LENGTH_SHORT).show();
         } catch (Exception ex) {
             Toast.makeText(context,ex.getMessage().toString(),

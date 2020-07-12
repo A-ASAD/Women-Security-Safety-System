@@ -9,12 +9,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -142,21 +145,54 @@ public class home extends AppCompatActivity {
                         List<Address> addresses = geocoder.getFromLocation(
                                 location.getLatitude(),location.getLongitude(),1
                         );
-                        //set Location on Alert box
-                         new AlertDialog.Builder(home.this)
-                                 .setMessage("Latitude : "+ addresses.get(0).getLatitude()+
-                                         "\nLongitude : "+addresses.get(0).getLongitude()+
-                                         "\nCountry Name: "+addresses.get(0).getCountryName()+
-                                         "\nLocality : "+addresses.get(0).getLocality()+
-                                         "\nAddress : "+ addresses.get(0).getAddressLine(0))
-                                 .setNegativeButton(android.R.string.yes, null)
-                                 .show();
+
+                         int uid=0;
+                         DBHelper db = new DBHelper(home.this);
+                         Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
+                         while (cur.moveToNext())
+                         {
+                             uid=cur.getInt(0);
+                         }
+                         Cursor cursor = db.getReadableDatabase().query("guardians",null,"uid = ?",new String[]{String.valueOf(uid)},null,null,null);
+                         if(cursor.getCount() > 0)
+                         {
+                             while (cursor.moveToNext())
+                             {
+                                 UserGuardian u1 = new UserGuardian(cursor.getString(1), cursor.getString(2),
+                                         cursor.getString(3), cursor.getInt(0) );
+                                 SendSMS( u1.phone_no,addresses.get(0).getAddressLine(0),u1.guardian_name);
+                             }
+                         }
+                         else
+                         {
+                             new AlertDialog.Builder(home.this)
+                                     .setMessage("You have no guardians added yet!!")
+                                     .setNegativeButton("OK", null)
+                                     .show();
+                         }
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
         });
+    }
+
+    void SendSMS(String num, String msg, String name)
+    {
+        try {
+            SmsManager smsManager = SmsManager.getDefault();
+            ArrayList<String> parts = smsManager.divideMessage("Please help me. I'm at:\n"+msg+
+                    "\n***\nThis message is sent from Women Security System");
+            smsManager.sendMultipartTextMessage(num, null, parts,
+                    null, null);
+            Toast.makeText(this, "Message sent to "+name,Toast.LENGTH_SHORT).show();
+        } catch (Exception ex) {
+            Toast.makeText(this,ex.getMessage().toString(),
+                    Toast.LENGTH_LONG).show();
+            ex.printStackTrace();
+        }
     }
 
     public void logout()
