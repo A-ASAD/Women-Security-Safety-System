@@ -15,6 +15,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PatternMatcher;
 import android.preference.PreferenceManager;
@@ -127,7 +128,16 @@ public class home extends AppCompatActivity {
                 if(ActivityCompat.checkSelfPermission(home.this,
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
                     //When Permission Granted
-                    getLocation();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (checkSelfPermission(Manifest.permission.SEND_SMS) ==
+                                PackageManager.PERMISSION_DENIED) {
+                            String[] permissions = {Manifest.permission.SEND_SMS};
+                            ActivityCompat.requestPermissions((Activity) home.this, permissions, 10);
+                        }
+                        else{
+                            getLocation();
+                        }
+                    }
                 }
                 else {
                     //When Permission Denied
@@ -252,5 +262,14 @@ public class home extends AppCompatActivity {
         startActivity(login);
         Toast.makeText(home.this, "Logged out successfully!", Toast.LENGTH_SHORT).show();
         finish();
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 10: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED)
+                    Toast.makeText(this, "Permission Denied..", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
