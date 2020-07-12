@@ -166,11 +166,13 @@ public class home extends AppCompatActivity {
 
                          int uid=0;
                          String naam="";
+                         String u_mail="";
                          DBHelper db = new DBHelper(home.this);
                          Cursor name = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
                          while (name.moveToNext())
                          {
                              naam=name.getString(1);
+                             u_mail=name.getString(4);
                          }
                          sender = new GMailSender(user,password);
                          sb="Alert(Women Safety & Security)!";
@@ -187,7 +189,7 @@ public class home extends AppCompatActivity {
                                  UserGuardian u1 = new UserGuardian(cursor.getString(1), cursor.getString(2),
                                          cursor.getString(3), cursor.getInt(0) );
                                  SendSMS( u1.phone_no,addresses.get(0).getAddressLine(0),u1.guardian_name);
-                                 bd="**** SENDER ****\nName: "+naam.toUpperCase()+"\nE-mail: "+u1.email+
+                                 bd="**** SENDER ****\nName: "+naam.toUpperCase()+"\nE-mail: "+u_mail+
                                          "\n\n** MESSAGE **\nPlease help me. I'm at:\n"
                                          +addresses.get(0).getAddressLine(0)+"\n\n***\nThis mail is sent from Women Security System";
                                  rp=u1.email;
