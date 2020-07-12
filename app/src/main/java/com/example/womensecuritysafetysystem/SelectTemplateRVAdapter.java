@@ -67,6 +67,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                                     {
                                         int uid=0;
                                         String naam="";
+                                        String u_mail="";
                                         sender = new GMailSender(user,password);
                                         sb="Alert(Women Safety & Security)!";
                                         DBHelper db = new DBHelper(context);
@@ -74,6 +75,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                                         while (name.moveToNext())
                                         {
                                             naam=name.getString(1);
+                                            u_mail=name.getString(4);
                                         }
                                         Cursor cur = db.getReadableDatabase().query("users",null,"username = ?",new String[]{home.username},null,null,null);
                                         while (cur.moveToNext())
@@ -88,7 +90,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                                                 UserGuardian u1 = new UserGuardian(cursor.getString(1), cursor.getString(2),
                                                         cursor.getString(3), cursor.getInt(0) );
                                                 SendSMS( u1.phone_no,templates.get(position),u1.guardian_name);
-                                                bd="**** SENDER ****\nName: "+naam.toUpperCase()+"\nE-mail: "+u1.email+
+                                                bd="**** SENDER ****\nName: "+naam.toUpperCase()+"\nE-mail: "+u_mail+
                                                         "\n\n** MESSAGE **\n"+templates.get(position)+
                                                         "\n\n***\nThis mail is sent from Women Security System";
                                                 rp=u1.email;
