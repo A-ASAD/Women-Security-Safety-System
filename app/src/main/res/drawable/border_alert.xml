@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-    <shape android:shape="oval">
-        <solid android:color="#ffc800"/>
+    <shape android:shape="rectangle">
+        <solid android:color="#009688"/>
+        <corners android:radius="50dp"/>
     </shape>
 </item>
     <item android:drawable="@drawable/alert" android:left="10dp"

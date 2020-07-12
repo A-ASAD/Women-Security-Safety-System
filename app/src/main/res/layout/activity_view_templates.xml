@@ -24,7 +24,7 @@
         android:fontFamily="@font/dancing_script"
         android:text="Women Security System"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
