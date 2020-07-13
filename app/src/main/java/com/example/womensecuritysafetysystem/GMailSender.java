@@ -1,6 +1,8 @@
 package com.example.womensecuritysafetysystem;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.util.ByteArrayDataSource;
 
 public class GMailSender extends javax.mail.Authenticator {
+    Context context;
     private String mailhost = "smtp.gmail.com";
     private String user;
     private String password;
@@ -62,6 +65,7 @@ public class GMailSender extends javax.mail.Authenticator {
                 Transport.send(message);
             }
         }catch (Exception e){
+            Toast.makeText(context, "Mail Sending Failed!\nCheck your Network Connenction", Toast.LENGTH_SHORT).show();
             Log.d("Error","sendingfailError"+e.getMessage());
         }
     }

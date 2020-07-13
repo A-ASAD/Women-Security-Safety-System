@@ -61,7 +61,7 @@ public class TemplateRVAdapter extends RecyclerView.Adapter<TemplateRVAdapter.Vi
                 DBHelper db =new DBHelper(context);
                 int rv = db.getWritableDatabase().delete("templates","id = ?",new String[]{String.valueOf(tid)});
                 AlertDialog.Builder alertbox = new AlertDialog.Builder(v.getRootView().getContext());
-                alertbox.setMessage(rv+" row deleted successfully!\nPress Ok to continue.");
+                alertbox.setMessage("Template deleted successfully!\nPress Ok to continue.");
                 alertbox.setNeutralButton("OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface arg0,

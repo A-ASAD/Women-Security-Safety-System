@@ -119,6 +119,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
     }
     class MyAsynClass extends AsyncTask<Void,Void,Void> {
          ProgressDialog pDialog;
+         int flag=1;
          @Override
          protected void onPreExecute(){
              super.onPreExecute();
@@ -131,6 +132,7 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
                  sender.sendMail(sb,bd,user,rp);
                  Log.d("send","done");
              } catch (Exception e) {
+                 flag=0;
                  Log.d("exceptionsending",e.toString());
              }
              return null;
@@ -139,7 +141,12 @@ public class SelectTemplateRVAdapter extends RecyclerView.Adapter<SelectTemplate
          {
              super.onPostExecute(result);
              pDialog.cancel();
-             Toast.makeText(context, "Mail Sent", Toast.LENGTH_SHORT).show();
+             if(flag==0)
+             {
+                 Toast.makeText(context, "Mail Sending Failed!\nCheck your Network Connenction", Toast.LENGTH_SHORT).show();
+             }
+             else
+                 Toast.makeText(context, "Mail sent", Toast.LENGTH_SHORT).show();
          }
     }
 
