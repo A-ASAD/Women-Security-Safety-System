@@ -30,7 +30,7 @@
         <activity android:name=".view_guardian" />
         <activity
             android:name=".login"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
